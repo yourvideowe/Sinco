@@ -140,6 +140,31 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#2a1a0e;color:#fff;padding:12px 24px;border-radius:10px;font-size:13px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:100;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
+/* INTRO PAGE */
+.intro-hero{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:18px;text-align:center}
+.intro-hero h2{font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px}
+.intro-hero p{font-size:13px;color:var(--muted);line-height:1.7}
+.intro-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:14px}
+.intro-block h3{font-size:13px;font-weight:700;color:var(--orange);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.intro-block p{font-size:13px;color:var(--muted);line-height:1.8}
+.intro-block ol,.intro-block ul{padding-left:18px;font-size:13px;color:var(--muted);line-height:2}
+.intro-3col{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
+.intro-col{background:var(--bg);border-radius:8px;padding:14px;border:1px solid var(--border)}
+.intro-col-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.intro-col-text{font-size:12px;color:var(--muted);line-height:1.7}
+.intro-ratio{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.intro-ratio-cell{text-align:center;padding:14px;border-radius:8px}
+.intro-ratio-cell.a{background:rgba(219,96,20,0.07)}
+.intro-ratio-cell.b{background:rgba(255,134,59,0.09)}
+.intro-ratio-num{font-size:28px;font-weight:700;color:var(--orange)}
+.intro-ratio-cell.b .intro-ratio-num{color:var(--light)}
+.intro-ratio-text{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5}
+.intro-arrow{text-align:center;font-size:12px;color:var(--muted);margin:10px 0;letter-spacing:.5px}
+.intro-cta{margin-top:24px;text-align:center}
+.intro-cta button{padding:14px 40px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-family:'Be Vietnam Pro',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s}
+.intro-cta button:hover{background:#c05010}
+.intro-cta p{font-size:11px;color:var(--muted);margin-top:8px}
+
 /* FOOTER */
 .footer{text-align:center;padding:24px;border-top:1px solid var(--border);margin-top:8px}
 .footer p{font-size:11px;color:var(--muted)}
@@ -164,13 +189,96 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="showTab('overview',this)">策略總覽</button>
+    <button class="tab active" onclick="showTab('intro',this)">開始前請先看</button>
+    <button class="tab" onclick="showTab('overview',this)">策略總覽</button>
     <button class="tab" onclick="showTab('timeline',this)">拍攝時程</button>
     <button class="tab" onclick="showTab('topics',this)">選題清單</button>
   </div>
 
+  <!-- ── 開始前請先看 ── -->
+  <div id="intro" class="section active">
+    <div class="intro-hero">
+      <h2>Sinco 個人品牌內容計畫</h2>
+      <p>這份說明會幫你理解：為什麼這樣安排、題目如何產生，<br>以及現階段如何突破受眾。請先看完再前往選題。</p>
+    </div>
+
+    <div class="intro-block">
+      <h3>這份表格要幫你完成什麼</h3>
+      <p>這份表不是單純的影片題目清單。它會協助我們確認 Sinco 現階段應先被看見的專業、哪些內容能建立人物辨識，以及每一次拍攝如何逐步累積成長期個人品牌。</p>
+    </div>
+
+    <div class="intro-block">
+      <h3>社群內容、個人品牌、個人 IP 的關係</h3>
+      <div class="intro-3col">
+        <div class="intro-col">
+          <div class="intro-col-label">社群內容</div>
+          <div class="intro-col-text">讓觀眾看見、理解並回應 Sinco 的方式。</div>
+        </div>
+        <div class="intro-col">
+          <div class="intro-col-label" style="color:var(--light)">個人品牌</div>
+          <div class="intro-col-text">觀眾長期接觸後，對 Sinco 形成的穩定印象。</div>
+        </div>
+        <div class="intro-col">
+          <div class="intro-col-label" style="color:var(--muted)">個人 IP</div>
+          <div class="intro-col-text">觀眾除了認同專業，也願意持續關注 Sinco 的觀點、個性與經歷。</div>
+        </div>
+      </div>
+      <p style="margin-top:14px">因此，我們會先建立清楚的美髮專業入口，再逐步放大管理、經營、故事與生活內容。</p>
+    </div>
+
+    <div class="intro-block">
+      <h3>這些主題是怎麼規劃出來的？</h3>
+      <ol>
+        <li>Sinco 本人的問卷、經驗與價值觀</li>
+        <li>目前帳號內容與既有影片</li>
+        <li>希望吸引的受眾與常見問題</li>
+        <li>市場上已有良好表現、並經人工審核的內容案例</li>
+      </ol>
+      <p style="margin-top:12px">我們只拆解有效的問題入口、衝突與影片結構，再依 Sinco 的真實條件重新設計，不複製別人的故事、語氣或人設。市場案例能增加規劃與測試依據，但不代表每支影片都保證出現相同表現；發布後仍會依 Sinco 自己帳號的觀看與互動持續調整。</p>
+    </div>
+
+    <div class="intro-block">
+      <h3>關於突破原本的受眾</h3>
+      <p>Sinco 現在適合突破受眾，但先突破的是「觀看她的人群」，不是離開美髮定位。</p>
+      <p style="margin-top:10px">第一階段會從更廣泛的髮型選擇、價格、風險、維護與溝通問題切入，讓原本不認識 Sinco 的人先因自己的問題停下來。</p>
+      <p style="margin-top:10px">若太早同時大量加入管理、創業、家庭、生活、選品與團購，觀眾可能看見很多面向，卻不知道 Sinco 最值得被記住的是什麼。</p>
+      <div class="intro-arrow" style="margin-top:14px">先突破觀看人群 → 建立專業與人物辨識 → 再逐步擴張內容領域</div>
+    </div>
+
+    <div class="intro-block">
+      <h3>本次拍攝建議怎麼選？</h3>
+      <div class="intro-ratio">
+        <div class="intro-ratio-cell a">
+          <div class="intro-ratio-num">7–8 題</div>
+          <div class="intro-ratio-text">美髮專業與顧客情境<br>用來吸引陌生觀眾、建立專業信任</div>
+        </div>
+        <div class="intro-ratio-cell b">
+          <div class="intro-ratio-num">2–3 題</div>
+          <div class="intro-ratio-text">管理、經營、品牌或人物內容<br>用來建立三店主理人與個人 IP 辨識</div>
+        </div>
+      </div>
+      <p style="margin-top:14px;font-size:12px;color:var(--muted)">選題時請確認：是否為真實經驗、是否願意公開、說法是否符合本人，以及是否有案例或素材可拍。</p>
+    </div>
+
+    <div class="intro-block">
+      <h3>完成選題後會怎麼進行？</h3>
+      <p>完成 16 選 10 後，內容團隊會再依 Sinco 的真實回答、可提供素材、拍攝條件與既有影片去重結果，整理正式拍攝大綱。</p>
+      <p style="margin-top:10px">選題不代表需要照目前文字逐字拍攝；需要調整的地方，可以直接在「補充說明」欄寫下原因。</p>
+    </div>
+
+    <div class="note-box" style="margin-bottom:0">
+      <h3>這一階段的核心</h3>
+      <p>先讓更多人因為自己的美髮問題看見 Sinco，再從她的回答中記住——她是一位有判斷、敢說真話、重視長期結果的美髮主理人。</p>
+    </div>
+
+    <div class="intro-cta">
+      <button onclick="document.querySelector('.tab:nth-child(4)').click()">我看完了，前往選題 →</button>
+      <p>共 16 題，請選出 10 題作為本次拍攝主題</p>
+    </div>
+  </div>
+
   <!-- ── 策略總覽 ── -->
-  <div id="overview" class="section active">
+  <div id="overview" class="section">
     <p class="sec-title">內容路徑規劃</p>
     <div class="phase-grid">
       <div class="phase-card">
