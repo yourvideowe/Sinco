@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holymake × Sinco 內容企劃書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── 請在部署前把下面這行換成你實際的 Apps Script 網址 ── */
+/* APPS_SCRIPT_URL 是在 JS 區塊裡設定的，見最底部 */
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#db6014;
+  --light:#ff863b;
+  --light82:rgba(255,134,59,0.82);
+  --bg:#f9f6f2;
+  --text:#2a1a0e;
+  --muted:#7a5a3a;
+  --border:rgba(219,96,20,0.15);
+  --card:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.app{max-width:860px;margin:0 auto;padding:0 0 80px}
+
+/* HERO */
+.hero{padding:40px 24px 28px;text-align:center;border-bottom:1px solid var(--border)}
+.logo-wrap{display:inline-flex;align-items:baseline}
+.logo-holy{font-family:Georgia,serif;font-style:italic;font-size:48px;font-weight:700;color:var(--orange);line-height:1}
+.logo-make{font-family:'Be Vietnam Pro',sans-serif;font-size:48px;font-weight:700;color:var(--light82);line-height:1}
+.logo-sub{font-size:12px;font-weight:700;color:var(--orange);letter-spacing:2.5px;text-transform:uppercase;margin-top:4px}
+.hero-desc{font-size:12px;color:var(--muted);letter-spacing:.8px;margin-top:4px}
+.client-badge{display:inline-block;margin-top:14px;background:var(--orange);color:#fff;font-size:13px;font-weight:500;padding:6px 20px;border-radius:20px}
+
+/* TABS */
+.tabs{display:flex;gap:0;padding:0 24px;border-bottom:1px solid var(--border);overflow-x:auto;background:var(--bg);position:sticky;top:0;z-index:10}
+.tab{flex-shrink:0;padding:14px 20px;font-size:13px;font-weight:500;color:var(--muted);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-family:'Be Vietnam Pro',sans-serif}
+.tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+.tab:hover:not(.active){color:var(--text)}
+
+/* SECTIONS */
+.section{display:none;padding:28px 24px;animation:fadein .2s ease}
+.section.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION TITLE */
+.sec-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
+
+/* STRATEGY OVERVIEW */
+.phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:24px}
+.phase-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;border-top:3px solid var(--orange)}
+.phase-card.b{border-top-color:var(--light)}
+.phase-card.c{border-top-color:var(--light82)}
+.phase-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.phase-card.b .phase-label{color:var(--light)}
+.phase-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.phase-desc{font-size:12px;color:var(--muted);line-height:1.7}
+.ratio-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:24px}
+.ratio-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.ratio-cell{text-align:center;padding:16px 12px;border-radius:10px}
+.ratio-cell.a{background:rgba(219,96,20,0.07)}
+.ratio-cell.b{background:rgba(255,134,59,0.09)}
+.ratio-num{font-size:36px;font-weight:700;color:var(--orange);line-height:1}
+.ratio-cell.b .ratio-num{color:var(--light)}
+.ratio-text{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.6}
+.note-box{background:rgba(219,96,20,0.06);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px}
+.note-box h3{font-size:12px;font-weight:700;color:var(--orange);margin-bottom:5px}
+.note-box p{font-size:12px;color:var(--muted);line-height:1.7}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:12px}
+.mc{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:box-shadow .2s}
+.mc:hover{box-shadow:0 3px 16px rgba(219,96,20,0.1)}
+.mc-header{display:flex;align-items:center;gap:14px;padding:16px 18px}
+.mc-dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mc-dot span{font-size:10px;font-weight:700;color:#fff;letter-spacing:.3px}
+.mc-meta{flex:1;min-width:0}
+.mc-date{font-size:11px;color:var(--muted);margin-bottom:2px}
+.mc-title{font-size:14px;font-weight:700;color:var(--text)}
+.mc-why{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.5}
+.mc-chevron{font-size:20px;color:var(--muted);transition:transform .25s;flex-shrink:0;user-select:none}
+.mc.open .mc-chevron{transform:rotate(180deg)}
+.mc-body{display:none;padding:0 18px 18px;border-top:1px solid var(--border)}
+.mc.open .mc-body{display:block}
+.mc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.mc-field label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;display:block}
+.mc-field p{font-size:12px;color:var(--muted);line-height:1.7}
+.mc-acc{display:inline-block;margin-top:10px;background:rgba(219,96,20,0.1);color:var(--orange);font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px}
+
+/* TOPICS */
+.progress-bar-wrap{background:rgba(219,96,20,0.06);border:1px solid rgba(219,96,20,0.2);border-radius:12px;padding:16px 18px;margin-bottom:18px}
+.progress-bar-wrap h3{font-size:13px;font-weight:700;color:var(--orange);margin-bottom:4px}
+.progress-bar-wrap p{font-size:12px;color:var(--muted)}
+.pb-row{display:flex;align-items:center;gap:10px;margin-top:10px}
+.pb-track{flex:1;height:6px;background:rgba(219,96,20,0.15);border-radius:3px;overflow:hidden}
+.pb-fill{height:100%;background:var(--orange);border-radius:3px;transition:width .3s}
+.pb-num{font-size:13px;font-weight:700;color:var(--orange);min-width:40px;text-align:right}
+.pb-clear{font-size:11px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:'Be Vietnam Pro',sans-serif}
+.filter-bar{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.fb{padding:6px 14px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--card);color:var(--muted);border-radius:20px;cursor:pointer;transition:all .2s;font-family:'Be Vietnam Pro',sans-serif}
+.fb.active{background:var(--orange);color:#fff;border-color:var(--orange)}
+.fb:hover:not(.active){color:var(--text)}
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:box-shadow .2s;position:relative}
+.tc:hover{box-shadow:0 2px 14px rgba(219,96,20,0.1)}
+.tc.selected{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}
+.tc-num{font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:500}
+.tc-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.t-hair{background:rgba(219,96,20,0.1);color:#8b3a00}
+.t-mgmt{background:rgba(186,117,23,0.15);color:#6b4200}
+.t-ops{background:rgba(90,120,30,0.12);color:#3a5800}
+.t-brand{background:rgba(30,100,180,0.1);color:#0a4080}
+.t-ip{background:rgba(120,40,140,0.1);color:#5a1870}
+.t-story{background:rgba(60,60,60,0.1);color:#303030}
+.tc-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.5}
+.tc-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.tc-note-wrap{margin-top:10px;display:none}
+.tc.selected .tc-note-wrap{display:block}
+.tc-note{width:100%;border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:12px;font-family:'Be Vietnam Pro',sans-serif;color:var(--text);background:var(--bg);resize:none;outline:none;min-height:52px;transition:border .2s}
+.tc-note:focus{border-color:var(--orange)}
+.tc-note::placeholder{color:#b8997a}
+.tc-check-row{display:flex;align-items:center;gap:8px;margin-top:10px;cursor:pointer}
+.tc-check-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--orange);cursor:pointer;flex-shrink:0}
+.tc-check-row span{font-size:12px;color:var(--muted)}
+
+/* SUBMIT SECTION */
+.submit-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:24px}
+.submit-wrap label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;display:block}
+.global-note{width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:var(--text);background:var(--bg);resize:vertical;outline:none;transition:border .2s}
+.global-note:focus{border-color:var(--orange)}
+.global-note::placeholder{color:#b8997a}
+.submit-btn{margin-top:12px;width:100%;padding:13px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-family:'Be Vietnam Pro',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;letter-spacing:.3px}
+.submit-btn:hover{background:#c05010}
+.submit-btn:disabled{background:#c8a080;cursor:not-allowed}
+.submit-hint{font-size:11px;color:var(--muted);margin-top:8px;text-align:center}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#2a1a0e;color:#fff;padding:12px 24px;border-radius:10px;font-size:13px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:100;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px;border-top:1px solid var(--border);margin-top:8px}
+.footer p{font-size:11px;color:var(--muted)}
+
+@media(max-width:600px){
+  .logo-holy,.logo-make{font-size:36px}
+  .mc-grid{grid-template-columns:1fr}
+  .ratio-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="hero">
+    <div class="logo-wrap">
+      <span class="logo-holy">Holy</span><span class="logo-make">make</span>
+    </div>
+    <div class="logo-sub">吼莉內容行銷</div>
+    <p class="hero-desc">SOCIAL MEDIA · VIDEOS AND CONTENT</p>
+    <div class="client-badge">Sinco 美髮主理人 × 內容企劃書</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('overview',this)">策略總覽</button>
+    <button class="tab" onclick="showTab('timeline',this)">拍攝時程</button>
+    <button class="tab" onclick="showTab('topics',this)">選題清單</button>
+  </div>
+
+  <!-- ── 策略總覽 ── -->
+  <div id="overview" class="section active">
+    <p class="sec-title">內容路徑規劃</p>
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-label">現在</div>
+        <div class="phase-title">社群內容</div>
+        <div class="phase-desc">讓觀眾看見、理解並回應 Sinco 的方式。以美髮專業入口為主，搭配少量管理與人物題。</div>
+      </div>
+      <div class="phase-card b">
+        <div class="phase-label">接下來</div>
+        <div class="phase-title">個人品牌</div>
+        <div class="phase-desc">觀眾長期接觸後，對 Sinco 形成穩定印象。逐步放大管理、人事、行銷與主理人故事。</div>
+      </div>
+      <div class="phase-card c">
+        <div class="phase-label">後續</div>
+        <div class="phase-title">個人 IP</div>
+        <div class="phase-desc">觀眾除了認同專業，也願意持續關注 Sinco 的觀點、個性與經歷。整合預約、合作方向。</div>
+      </div>
+    </div>
+
+    <div class="ratio-box">
+      <p class="sec-title">本次拍攝建議比例</p>
+      <div class="ratio-grid">
+        <div class="ratio-cell a">
+          <div class="ratio-num">7–8</div>
+          <div class="ratio-text">美髮專業與顧客情境<br>吸引陌生觀眾、建立專業信任</div>
+        </div>
+        <div class="ratio-cell b">
+          <div class="ratio-num" style="color:var(--light)">2–3</div>
+          <div class="ratio-text">管理、經營、品牌或人物<br>建立三店主理人與個人 IP 辨識</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <h3>本次企劃核心方向</h3>
+      <p>先用美髮專業建立入口，讓更多陌生觀眾因自己的髮型問題看見 Sinco；再從她的回答中記住——她是一位有判斷、敢說真話、重視長期結果的三店主理人。</p>
+    </div>
+    <div class="note-box">
+      <h3>正確的突破受眾順序</h3>
+      <p>先突破觀看人群 → 建立專業與人物辨識 → 再逐步擴張內容領域。<br>現在不宜同時大量加入管理、創業、家庭等多元主題，避免觀眾不清楚 Sinco 最值得被記住的是什麼。</p>
+    </div>
+  </div>
+
+  <!-- ── 拍攝時程 ── -->
+  <div id="timeline" class="section">
+    <p class="sec-title">八次拍攝規劃</p>
+    <div class="timeline" id="timeline-list"></div>
+  </div>
+
+  <!-- ── 選題清單 ── -->
+  <div id="topics" class="section">
+    <div class="progress-bar-wrap">
+      <h3>選題進度</h3>
+      <p>從以下 16 題中選出 10 題，選擇後可在每題下方填寫補充說明。</p>
+      <div class="pb-row">
+        <div class="pb-track"><div class="pb-fill" id="pb-fill" style="width:0%"></div></div>
+        <div class="pb-num"><span id="pb-count">0</span> / 10</div>
+        <button class="pb-clear" onclick="clearAll()">清除全部</button>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <button class="fb active" onclick="filterTopics('all',this)">全部</button>
+      <button class="fb" onclick="filterTopics('hair',this)">美髮專業</button>
+      <button class="fb" onclick="filterTopics('mgmt',this)">管理／人事</button>
+      <button class="fb" onclick="filterTopics('ops',this)">經營觀點</button>
+      <button class="fb" onclick="filterTopics('brand',this)">行銷／品牌</button>
+      <button class="fb" onclick="filterTopics('ip',this)">個人 IP</button>
+      <button class="fb" onclick="filterTopics('story',this)">創業故事</button>
+    </div>
+    <div class="topics-grid" id="topics-grid"></div>
+
+    <div class="submit-wrap">
+      <label for="global-note">整體補充說明（選填）</label>
+      <textarea class="global-note" id="global-note" placeholder="如有任何想讓 Holymake 團隊了解的事情，請在這裡填寫…" rows="3"></textarea>
+      <button class="submit-btn" id="submit-btn" onclick="submitToSheets()">送出選題回覆</button>
+      <p class="submit-hint">送出後資料將直接回寫至企劃表格，Holymake 團隊會盡快與你確認。</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Holymake 吼莉內容行銷　版權所有 · LINE@ @holymake</p>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// ★ 部署前請把這裡換成你的 Apps Script 網路應用程式網址 ★
+// ============================================================
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZ2_cV79BeCXu6oXxscYe9yL9oY6GXqsxs8CCYGkJqwYOnU8-X4CaO8OoFLZb8Dbdp/exec';
+
+// ── 資料 ──
+const months = [
+  {date:'2026/06/30',label:'01',color:'#db6014',title:'專業判斷＋主理人初步辨識',why:'先讓觀眾看懂 Sinco 的美髮專業，同時埋入她是三店主理人的差異。',content:'髮型適合度、染漂風險、顧客溝通；搭配少量管理、經營與人物觀點。',acc:'建立「會做、會判斷，也有經營視角」的第一印象。',next:'為後續顧客需求、服務與市場觀察鋪路。'},
+  {date:'2026/07',label:'02',color:'#e06820',title:'顧客需求、服務溝通與市場觀察',why:'把 Sinco 面對顧客與市場的真實判斷說清楚，避免帳號只剩作品展示。',content:'顧客真正需要什麼、服務落差、需求翻譯、作品與市場需求的差別。',acc:'建立懂顧客、懂服務，也懂市場的經營者形象。',next:'銜接到帶人與人才培育。'},
+  {date:'2026/08',label:'03',color:'#e57030',title:'帶人、看人與人才培育',why:'呈現 Sinco 長期帶團隊與培育設計師的經驗，拉開與一般美髮帳號的差異。',content:'看助理與設計師不只看技術、責任感、溝通、成長與人才位置。',acc:'建立教育者、管理者與人才培育視角。',next:'銜接到團隊管理與制度經營。'},
+  {date:'2026/09',label:'04',color:'#ea7840',title:'團隊管理與制度經營',why:'讓觀眾理解經營三間店不只靠技術，也需要處理人、溝通與制度。',content:'團隊卡關、人員流失、溝通、分工、制度與主理人的管理選擇。',acc:'建立具實戰經驗的三店主理人形象。',next:'銜接到品牌與行銷經營。'},
+  {date:'2026/10',label:'05',color:'#ef8050',title:'品牌、行銷與三店經營觀點',why:'把 Sinco 反覆關注的行銷與品牌問題，轉成她自己的經營觀點。',content:'作品與品牌差異、顧客為何選擇、服務價值、店家如何被理解。',acc:'建立不只懂技術，也懂品牌與市場的經營者辨識。',next:'銜接到更有厚度的創業與成長故事。'},
+  {date:'2026/11',label:'06',color:'#f48860',title:'創業轉折、錯誤決策與成長故事',why:'在專業與經營能力被理解後，讓觀眾看見 Sinco 走到現在的真實過程。',content:'15歲入行、創業、團隊重組、人員流失、經營壓力與重要選擇。',acc:'建立人物厚度、可信度與長期追蹤理由。',next:'銜接到女性經營者與生活角色。'},
+  {date:'2026/12',label:'07',color:'#f99070',title:'女性經營者、家庭與真實生活角色',why:'讓觀眾理解 Sinco 如何在主理人、妻子、母親與生活角色之間做選擇。',content:'家庭、孩子、四隻貓、工作與生活平衡、經營者私下的真實樣貌。',acc:'增加親近感，讓觀眾從認同專業走到喜歡 Sinco 這個人。',next:'銜接到整體個人品牌整合。'},
+  {date:'2027/01',label:'08',color:'#ffa080',title:'專業、經營與人物品牌整合',why:'把前七次累積的美髮、管理、人事、行銷與人物內容收斂成清楚辨識。',content:'代表觀點、年度回顧、常見諮詢、主理人選擇。',acc:'逐步形成更清楚的 Sinco 個人品牌，評估預約、合作及後續商業延伸。',next:'確認下一階段最值得持續放大的系列。'},
+];
+
+const topics = [
+  {id:1,cat:'hair',title:'想留長又要髮尾乾淨，這兩件事有時不能一起要',desc:'說明髮尾受損時，長度、髮尾狀態與整理效果要怎麼取捨。'},
+  {id:2,cat:'hair',title:'想染淺又不想漂，先接受這三個取捨',desc:'說明不漂染淺時，顏色效果會受到哪些條件限制。'},
+  {id:3,cat:'hair',title:'妳說「只修一下」，我會先問妳平常綁不綁頭髮',desc:'說明剪髮前為什麼要先知道綁髮、工作或育兒等生活需求。'},
+  {id:4,cat:'hair',title:'想剪高層次又怕毛躁，這兩個願望要先排順序',desc:'說明層次高度要怎麼配合髮況與整理能力。'},
+  {id:5,cat:'hair',title:'想跟參考圖一模一樣，我會先拒絕這句話',desc:'說明參考圖只能作為溝通工具，不能保證完全複製。'},
+  {id:6,cat:'hair',title:'染髮價差在哪？不是只差一條染膏',desc:'說明染髮價差不只在染膏，也包含判斷、分區、配方與維護。'},
+  {id:7,cat:'hair',title:'我不會先報漂髮價格，因為要先看這三件事',desc:'說明漂髮報價前為什麼要先看髮況、染髮史與目標。'},
+  {id:8,cat:'hair',title:'為什麼設計師看完頭髮，會先勸妳延期？',desc:'說明何時應該延期、測試或分段處理。'},
+  {id:9,cat:'hair',title:'妳說要「自然一點」，但自然對每個人的意思不一樣',desc:'說明如何把自然、短一點、不要太亮等模糊說法變成具體條件。'},
+  {id:10,cat:'hair',title:'我喜歡這個髮型，但我不會推薦給妳',desc:'說明喜歡與適合不同，要考慮髮況、生活與維護。'},
+  {id:11,cat:'mgmt',title:'帶了三家店後，我才知道團隊問題常常不是能力問題',desc:'談帶團隊後，如何看待人才位置、溝通與團隊卡關。'},
+  {id:12,cat:'mgmt',title:'看一個助理能不能成為設計師，我不只看技術',desc:'談培育人才時，除了技術之外還會觀察哪些面向。'},
+  {id:13,cat:'ops',title:'做對的事，比把事情做對更重要',desc:'用一個工作或經營選擇，談方向為什麼比執行更重要。'},
+  {id:14,cat:'brand',title:'行銷不是一直發作品，而是讓客人知道你有什麼不同',desc:'談作品一直發布，為什麼客人仍可能看不懂品牌差異。'},
+  {id:15,cat:'ip',title:'我為什麼不想只把這個帳號做成作品集？',desc:'說明未來除了髮型，也會分享工作觀點、經營故事與生活選擇。'},
+  {id:16,cat:'story',title:'15歲進美髮業，到三家店主理人，中間不是一路順利',desc:'談從入行到三店主理人的成長與轉折；細節由 Sinco 確認。'},
+];
+
+const tagMeta = {
+  hair:{label:'美髮專業',cls:'t-hair'},
+  mgmt:{label:'管理／人事',cls:'t-mgmt'},
+  ops:{label:'經營觀點',cls:'t-ops'},
+  brand:{label:'行銷／品牌',cls:'t-brand'},
+  ip:{label:'個人 IP',cls:'t-ip'},
+  story:{label:'創業故事',cls:'t-story'},
+};
+
+// ── 狀態 ──
+let selected = {}; // { id: note }
+let currentFilter = 'all';
+
+// ── Tab 切換 ──
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── 時程渲染 ──
+function renderTimeline() {
+  document.getElementById('timeline-list').innerHTML = months.map((m, i) => `
+    <div class="mc" id="mc${i}" onclick="toggleMc(${i})">
+      <div class="mc-header">
+        <div class="mc-dot" style="background:${m.color}"><span>${m.label}</span></div>
+        <div class="mc-meta">
+          <div class="mc-date">${m.date}</div>
+          <div class="mc-title">${m.title}</div>
+          <div class="mc-why">${m.why}</div>
+        </div>
+        <span class="mc-chevron">▾</span>
+      </div>
+      <div class="mc-body">
+        <div class="mc-grid">
+          <div class="mc-field"><label>可能內容方向</label><p>${m.content}</p></div>
+          <div class="mc-field"><label>銜接下個月</label><p>${m.next}</p></div>
+        </div>
+        <span class="mc-acc">品牌累積：${m.acc}</span>
+      </div>
+    </div>`).join('');
+}
+
+function toggleMc(i) {
+  document.getElementById('mc' + i).classList.toggle('open');
+}
+
+// ── 選題渲染 ──
+function renderTopics(filter) {
+  const list = filter === 'all' ? topics : topics.filter(t => t.cat === filter);
+  document.getElementById('topics-grid').innerHTML = list.map(t => {
+    const tm = tagMeta[t.cat];
+    const isSel = selected.hasOwnProperty(t.id);
+    const note = isSel ? (selected[t.id] || '') : '';
+    return `
+      <div class="tc${isSel ? ' selected' : ''}" id="tc${t.id}">
+        <div class="tc-num">題 ${String(t.id).padStart(2,'0')}</div>
+        <span class="tc-tag ${tm.cls}">${tm.label}</span>
+        <div class="tc-title">${t.title}</div>
+        <div class="tc-desc">${t.desc}</div>
+        <label class="tc-check-row">
+          <input type="checkbox" ${isSel ? 'checked' : ''} onchange="toggleTopic(${t.id}, this)">
+          <span>選擇此題</span>
+        </label>
+        <div class="tc-note-wrap">
+          <textarea class="tc-note" placeholder="補充說明（選填）" oninput="updateNote(${t.id}, this.value)">${note}</textarea>
+        </div>
+      </div>`;
+  }).join('');
+  updateCounter();
+}
+
+function toggleTopic(id, el) {
+  const count = Object.keys(selected).length;
+  if (el.checked && count >= 10) {
+    el.checked = false;
+    showToast('最多只能選 10 題');
+    return;
+  }
+  if (el.checked) {
+    selected[id] = '';
+    document.getElementById('tc' + id).classList.add('selected');
+  } else {
+    delete selected[id];
+    document.getElementById('tc' + id).classList.remove('selected');
+  }
+  updateCounter();
+}
+
+function updateNote(id, val) {
+  if (selected.hasOwnProperty(id)) selected[id] = val;
+}
+
+function updateCounter() {
+  const n = Object.keys(selected).length;
+  document.getElementById('pb-count').textContent = n;
+  document.getElementById('pb-fill').style.width = (n / 10 * 100) + '%';
+}
+
+function clearAll() {
+  selected = {};
+  renderTopics(currentFilter);
+}
+
+function filterTopics(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTopics(cat);
+}
+
+// ── 送出到 Google Sheets ──
+async function submitToSheets() {
+  const count = Object.keys(selected).length;
+  if (count === 0) { showToast('請至少選擇一題'); return; }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = '送出中…';
+
+  const payload = {
+    selections: Object.entries(selected).map(([id, note]) => ({ id: Number(id), note })),
+    globalNote: document.getElementById('global-note').value.trim()
+  };
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'text/plain' }, // Apps Script doPost 需要 text/plain 避免 CORS preflight
+    });
+    const json = await res.json();
+    if (json.success) {
+      showToast('✓ 已成功送出！Holymake 團隊會盡快與你確認。');
+      btn.textContent = '已送出 ✓';
+    } else {
+      throw new Error(json.message || '未知錯誤');
+    }
+  } catch (err) {
+    showToast('送出失敗：' + err.message);
+    btn.disabled = false;
+    btn.textContent = '送出選題回覆';
+  }
+}
+
+// ── Toast ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ── Init ──
+renderTimeline();
+renderTopics('all');
+</script>
+</body>
+</html>
