@@ -7,9 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-/* ── 請在部署前把下面這行換成你實際的 Apps Script 網址 ── */
-/* APPS_SCRIPT_URL 是在 JS 區塊裡設定的，見最底部 */
-
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --orange:#db6014;
@@ -20,10 +17,12 @@
   --muted:#7a5a3a;
   --border:rgba(219,96,20,0.15);
   --card:#fff;
+  --green:#2d7a4a;
+  --green-bg:rgba(45,122,74,0.07);
 }
 html{scroll-behavior:smooth}
 body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-.app{max-width:860px;margin:0 auto;padding:0 0 80px}
+.app{max-width:900px;margin:0 auto;padding:0 0 80px}
 
 /* HERO */
 .hero{padding:40px 24px 28px;text-align:center;border-bottom:1px solid var(--border)}
@@ -44,110 +43,16 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
 .section{display:none;padding:28px 24px;animation:fadein .2s ease}
 .section.active{display:block}
 @keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-
-/* SECTION TITLE */
 .sec-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
 
-/* STRATEGY OVERVIEW */
-.phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:24px}
-.phase-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;border-top:3px solid var(--orange)}
-.phase-card.b{border-top-color:var(--light)}
-.phase-card.c{border-top-color:var(--light82)}
-.phase-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
-.phase-card.b .phase-label{color:var(--light)}
-.phase-title{font-size:14px;font-weight:700;margin-bottom:6px}
-.phase-desc{font-size:12px;color:var(--muted);line-height:1.7}
-.ratio-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:24px}
-.ratio-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-.ratio-cell{text-align:center;padding:16px 12px;border-radius:10px}
-.ratio-cell.a{background:rgba(219,96,20,0.07)}
-.ratio-cell.b{background:rgba(255,134,59,0.09)}
-.ratio-num{font-size:36px;font-weight:700;color:var(--orange);line-height:1}
-.ratio-cell.b .ratio-num{color:var(--light)}
-.ratio-text{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.6}
-.note-box{background:rgba(219,96,20,0.06);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px}
-.note-box h3{font-size:12px;font-weight:700;color:var(--orange);margin-bottom:5px}
-.note-box p{font-size:12px;color:var(--muted);line-height:1.7}
-
-/* TIMELINE */
-.timeline{display:flex;flex-direction:column;gap:12px}
-.mc{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:box-shadow .2s}
-.mc:hover{box-shadow:0 3px 16px rgba(219,96,20,0.1)}
-.mc-header{display:flex;align-items:center;gap:14px;padding:16px 18px}
-.mc-dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.mc-dot span{font-size:10px;font-weight:700;color:#fff;letter-spacing:.3px}
-.mc-meta{flex:1;min-width:0}
-.mc-date{font-size:11px;color:var(--muted);margin-bottom:2px}
-.mc-title{font-size:14px;font-weight:700;color:var(--text)}
-.mc-why{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.5}
-.mc-chevron{font-size:20px;color:var(--muted);transition:transform .25s;flex-shrink:0;user-select:none}
-.mc.open .mc-chevron{transform:rotate(180deg)}
-.mc-body{display:none;padding:0 18px 18px;border-top:1px solid var(--border)}
-.mc.open .mc-body{display:block}
-.mc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-.mc-field label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;display:block}
-.mc-field p{font-size:12px;color:var(--muted);line-height:1.7}
-.mc-acc{display:inline-block;margin-top:10px;background:rgba(219,96,20,0.1);color:var(--orange);font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px}
-
-/* TOPICS */
-.progress-bar-wrap{background:rgba(219,96,20,0.06);border:1px solid rgba(219,96,20,0.2);border-radius:12px;padding:16px 18px;margin-bottom:18px}
-.progress-bar-wrap h3{font-size:13px;font-weight:700;color:var(--orange);margin-bottom:4px}
-.progress-bar-wrap p{font-size:12px;color:var(--muted)}
-.pb-row{display:flex;align-items:center;gap:10px;margin-top:10px}
-.pb-track{flex:1;height:6px;background:rgba(219,96,20,0.15);border-radius:3px;overflow:hidden}
-.pb-fill{height:100%;background:var(--orange);border-radius:3px;transition:width .3s}
-.pb-num{font-size:13px;font-weight:700;color:var(--orange);min-width:40px;text-align:right}
-.pb-clear{font-size:11px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:'Be Vietnam Pro',sans-serif}
-.filter-bar{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
-.fb{padding:6px 14px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--card);color:var(--muted);border-radius:20px;cursor:pointer;transition:all .2s;font-family:'Be Vietnam Pro',sans-serif}
-.fb.active{background:var(--orange);color:#fff;border-color:var(--orange)}
-.fb:hover:not(.active){color:var(--text)}
-.topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
-.tc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:box-shadow .2s;position:relative}
-.tc:hover{box-shadow:0 2px 14px rgba(219,96,20,0.1)}
-.tc.selected{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}
-.tc-num{font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:500}
-.tc-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.t-hair{background:rgba(219,96,20,0.1);color:#8b3a00}
-.t-mgmt{background:rgba(186,117,23,0.15);color:#6b4200}
-.t-ops{background:rgba(90,120,30,0.12);color:#3a5800}
-.t-brand{background:rgba(30,100,180,0.1);color:#0a4080}
-.t-ip{background:rgba(120,40,140,0.1);color:#5a1870}
-.t-story{background:rgba(60,60,60,0.1);color:#303030}
-.tc-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.5}
-.tc-desc{font-size:12px;color:var(--muted);line-height:1.6}
-.tc-note-wrap{margin-top:10px;display:none}
-.tc.selected .tc-note-wrap{display:block}
-.tc-note{width:100%;border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:12px;font-family:'Be Vietnam Pro',sans-serif;color:var(--text);background:var(--bg);resize:none;outline:none;min-height:52px;transition:border .2s}
-.tc-note:focus{border-color:var(--orange)}
-.tc-note::placeholder{color:#b8997a}
-.tc-check-row{display:flex;align-items:center;gap:8px;margin-top:10px;cursor:pointer}
-.tc-check-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--orange);cursor:pointer;flex-shrink:0}
-.tc-check-row span{font-size:12px;color:var(--muted)}
-
-/* SUBMIT SECTION */
-.submit-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:24px}
-.submit-wrap label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;display:block}
-.global-note{width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:var(--text);background:var(--bg);resize:vertical;outline:none;transition:border .2s}
-.global-note:focus{border-color:var(--orange)}
-.global-note::placeholder{color:#b8997a}
-.submit-btn{margin-top:12px;width:100%;padding:13px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-family:'Be Vietnam Pro',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;letter-spacing:.3px}
-.submit-btn:hover{background:#c05010}
-.submit-btn:disabled{background:#c8a080;cursor:not-allowed}
-.submit-hint{font-size:11px;color:var(--muted);margin-top:8px;text-align:center}
-
-/* TOAST */
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#2a1a0e;color:#fff;padding:12px 24px;border-radius:10px;font-size:13px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:100;white-space:nowrap}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* INTRO PAGE */
+/* INTRO */
 .intro-hero{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:18px;text-align:center}
 .intro-hero h2{font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px}
 .intro-hero p{font-size:13px;color:var(--muted);line-height:1.7}
 .intro-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:14px}
-.intro-block h3{font-size:13px;font-weight:700;color:var(--orange);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.intro-block h3{font-size:13px;font-weight:700;color:var(--orange);margin-bottom:10px}
 .intro-block p{font-size:13px;color:var(--muted);line-height:1.8}
-.intro-block ol,.intro-block ul{padding-left:18px;font-size:13px;color:var(--muted);line-height:2}
+.intro-block ol{padding-left:18px;font-size:13px;color:var(--muted);line-height:2}
 .intro-3col{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
 .intro-col{background:var(--bg);border-radius:8px;padding:14px;border:1px solid var(--border)}
 .intro-col-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
@@ -164,6 +69,137 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
 .intro-cta button{padding:14px 40px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-family:'Be Vietnam Pro',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s}
 .intro-cta button:hover{background:#c05010}
 .intro-cta p{font-size:11px;color:var(--muted);margin-top:8px}
+.note-box{background:rgba(219,96,20,0.06);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:16px}
+.note-box h3{font-size:12px;font-weight:700;color:var(--orange);margin-bottom:5px}
+.note-box p{font-size:12px;color:var(--muted);line-height:1.7}
+
+/* STRATEGY */
+.phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:24px}
+.phase-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;border-top:3px solid var(--orange)}
+.phase-card.b{border-top-color:var(--light)}
+.phase-card.c{border-top-color:var(--light82)}
+.phase-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.phase-card.b .phase-label{color:var(--light)}
+.phase-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.phase-desc{font-size:12px;color:var(--muted);line-height:1.7}
+.ratio-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:24px}
+.ratio-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.ratio-cell{text-align:center;padding:16px 12px;border-radius:10px}
+.ratio-cell.a{background:rgba(219,96,20,0.07)}
+.ratio-cell.b{background:rgba(255,134,59,0.09)}
+.ratio-num{font-size:36px;font-weight:700;color:var(--orange);line-height:1}
+.ratio-cell.b .ratio-num{color:var(--light)}
+.ratio-text{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.6}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:12px}
+.mc{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:box-shadow .2s}
+.mc:hover{box-shadow:0 3px 16px rgba(219,96,20,0.1)}
+.mc-header{display:flex;align-items:center;gap:14px;padding:16px 18px}
+.mc-dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mc-dot span{font-size:10px;font-weight:700;color:#fff}
+.mc-meta{flex:1;min-width:0}
+.mc-date{font-size:11px;color:var(--muted);margin-bottom:2px}
+.mc-title{font-size:14px;font-weight:700;color:var(--text)}
+.mc-why{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.5}
+.mc-chevron{font-size:20px;color:var(--muted);transition:transform .25s;flex-shrink:0;user-select:none}
+.mc.open .mc-chevron{transform:rotate(180deg)}
+.mc-body{display:none;padding:0 18px 18px;border-top:1px solid var(--border)}
+.mc.open .mc-body{display:block}
+.mc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.mc-field label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;display:block}
+.mc-field p{font-size:12px;color:var(--muted);line-height:1.7}
+.mc-acc{display:inline-block;margin-top:10px;background:rgba(219,96,20,0.1);color:var(--orange);font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px}
+
+/* TOPICS — progress */
+.progress-bar-wrap{background:rgba(219,96,20,0.06);border:1px solid rgba(219,96,20,0.2);border-radius:12px;padding:16px 18px;margin-bottom:18px}
+.progress-bar-wrap h3{font-size:13px;font-weight:700;color:var(--orange);margin-bottom:4px}
+.progress-bar-wrap p{font-size:12px;color:var(--muted)}
+.pb-row{display:flex;align-items:center;gap:10px;margin-top:10px}
+.pb-track{flex:1;height:6px;background:rgba(219,96,20,0.15);border-radius:3px;overflow:hidden}
+.pb-fill{height:100%;background:var(--orange);border-radius:3px;transition:width .3s}
+.pb-num{font-size:13px;font-weight:700;color:var(--orange);min-width:40px;text-align:right}
+.pb-clear{font-size:11px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:'Be Vietnam Pro',sans-serif}
+
+/* TOPICS — filter */
+.filter-bar{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.fb{padding:6px 14px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--card);color:var(--muted);border-radius:20px;cursor:pointer;transition:all .2s;font-family:'Be Vietnam Pro',sans-serif}
+.fb.active{background:var(--orange);color:#fff;border-color:var(--orange)}
+.fb:hover:not(.active){color:var(--text)}
+
+/* TOPICS — section label */
+.topic-section-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin:24px 0 12px;display:flex;align-items:center;gap:8px}
+.topic-section-label.confirmed{color:var(--green)}
+.topic-section-label.pending{color:var(--orange)}
+.topic-section-label.extra{color:var(--muted)}
+.topic-section-label::after{content:'';flex:1;height:1px;background:currentColor;opacity:.2}
+
+/* TOPICS — card */
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.tc{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s}
+.tc:hover{box-shadow:0 2px 14px rgba(219,96,20,0.1)}
+
+/* confirmed card */
+.tc.confirmed{border-color:rgba(45,122,74,0.3);box-shadow:0 0 0 1px rgba(45,122,74,0.15)}
+.tc-top{padding:16px 16px 12px}
+.tc-num{font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:500;display:flex;align-items:center;justify-content:space-between}
+.confirmed-badge{font-size:10px;font-weight:700;letter-spacing:.8px;background:var(--green-bg);color:var(--green);padding:2px 8px;border-radius:4px}
+.extra-badge{font-size:10px;font-weight:700;letter-spacing:.8px;background:rgba(122,90,58,0.1);color:var(--muted);padding:2px 8px;border-radius:4px}
+.tc-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.t-hair{background:rgba(219,96,20,0.1);color:#8b3a00}
+.t-mgmt{background:rgba(186,117,23,0.15);color:#6b4200}
+.t-ops{background:rgba(90,120,30,0.12);color:#3a5800}
+.t-brand{background:rgba(30,100,180,0.1);color:#0a4080}
+.t-ip{background:rgba(120,40,140,0.1);color:#5a1870}
+.t-story{background:rgba(60,60,60,0.1);color:#303030}
+.tc-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.5}
+.tc-memory{font-size:11px;font-style:italic;color:var(--green);margin-bottom:6px;line-height:1.5;padding:6px 8px;background:var(--green-bg);border-radius:6px}
+.tc-desc{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* SCRIPT accordion */
+.script-toggle{width:100%;padding:10px 16px;background:rgba(219,96,20,0.05);border:none;border-top:1px solid var(--border);font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:600;color:var(--orange);cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;transition:background .2s}
+.script-toggle:hover{background:rgba(219,96,20,0.1)}
+.tc.confirmed .script-toggle{background:rgba(45,122,74,0.05);color:var(--green);border-top-color:rgba(45,122,74,0.15)}
+.tc.confirmed .script-toggle:hover{background:rgba(45,122,74,0.1)}
+.script-chevron{transition:transform .2s;font-size:14px}
+.script-body{display:none;padding:14px 16px;border-top:1px solid var(--border);background:#fefefe}
+.tc.confirmed .script-body{border-top-color:rgba(45,122,74,0.1)}
+.script-body.open{display:block}
+.script-field{margin-bottom:14px}
+.script-field:last-child{margin-bottom:0}
+.script-field label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange);margin-bottom:5px;display:block}
+.tc.confirmed .script-field label{color:var(--green)}
+.script-field p{font-size:12px;color:var(--muted);line-height:1.7}
+.script-qa{display:grid;gap:6px;margin-top:2px}
+.script-q{font-size:12px;color:var(--text);padding:6px 10px;background:var(--bg);border-radius:6px;border-left:2px solid var(--orange);line-height:1.6}
+.tc.confirmed .script-q{border-left-color:var(--green)}
+
+/* selectable card bottom */
+.tc-check-row{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--border);cursor:pointer}
+.tc-check-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--orange);cursor:pointer;flex-shrink:0}
+.tc-check-row span{font-size:12px;color:var(--muted)}
+.tc.selected .tc-check-row{background:rgba(219,96,20,0.04)}
+.tc.selected{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}
+.tc-note-wrap{padding:8px 16px 12px;display:none;border-top:1px solid var(--border);background:#fefefe}
+.tc.selected .tc-note-wrap{display:block}
+.tc-note{width:100%;border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:12px;font-family:'Be Vietnam Pro',sans-serif;color:var(--text);background:var(--bg);resize:none;outline:none;min-height:52px;transition:border .2s}
+.tc-note:focus{border-color:var(--orange)}
+.tc-note::placeholder{color:#b8997a}
+
+/* SUBMIT */
+.submit-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:24px}
+.submit-wrap label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;display:block}
+.global-note{width:100%;min-height:80px;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:var(--text);background:var(--bg);resize:vertical;outline:none;transition:border .2s}
+.global-note:focus{border-color:var(--orange)}
+.global-note::placeholder{color:#b8997a}
+.submit-btn{margin-top:12px;width:100%;padding:13px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-family:'Be Vietnam Pro',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s}
+.submit-btn:hover{background:#c05010}
+.submit-btn:disabled{background:#c8a080;cursor:not-allowed}
+.submit-hint{font-size:11px;color:var(--muted);margin-top:8px;text-align:center}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#2a1a0e;color:#fff;padding:12px 24px;border-radius:10px;font-size:13px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:100;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* FOOTER */
 .footer{text-align:center;padding:24px;border-top:1px solid var(--border);margin-top:8px}
@@ -173,6 +209,7 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
   .logo-holy,.logo-make{font-size:36px}
   .mc-grid{grid-template-columns:1fr}
   .ratio-grid{grid-template-columns:1fr}
+  .intro-3col{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -201,12 +238,10 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
       <h2>Sinco 個人品牌內容計畫</h2>
       <p>這份說明會幫你理解：為什麼這樣安排、題目如何產生，<br>以及現階段如何突破受眾。請先看完再前往選題。</p>
     </div>
-
     <div class="intro-block">
       <h3>這份表格要幫你完成什麼</h3>
       <p>這份表不是單純的影片題目清單。它會協助我們確認 Sinco 現階段應先被看見的專業、哪些內容能建立人物辨識，以及每一次拍攝如何逐步累積成長期個人品牌。</p>
     </div>
-
     <div class="intro-block">
       <h3>社群內容、個人品牌、個人 IP 的關係</h3>
       <div class="intro-3col">
@@ -225,7 +260,6 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
       </div>
       <p style="margin-top:14px">因此，我們會先建立清楚的美髮專業入口，再逐步放大管理、經營、故事與生活內容。</p>
     </div>
-
     <div class="intro-block">
       <h3>這些主題是怎麼規劃出來的？</h3>
       <ol>
@@ -234,46 +268,41 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
         <li>希望吸引的受眾與常見問題</li>
         <li>市場上已有良好表現、並經人工審核的內容案例</li>
       </ol>
-      <p style="margin-top:12px">我們只拆解有效的問題入口、衝突與影片結構，再依 Sinco 的真實條件重新設計，不複製別人的故事、語氣或人設。市場案例能增加規劃與測試依據，但不代表每支影片都保證出現相同表現；發布後仍會依 Sinco 自己帳號的觀看與互動持續調整。</p>
+      <p style="margin-top:12px">我們只拆解有效的問題入口、衝突與影片結構，再依 Sinco 的真實條件重新設計，不複製別人的故事、語氣或人設。</p>
     </div>
-
     <div class="intro-block">
       <h3>關於突破原本的受眾</h3>
       <p>Sinco 現在適合突破受眾，但先突破的是「觀看她的人群」，不是離開美髮定位。</p>
-      <p style="margin-top:10px">第一階段會從更廣泛的髮型選擇、價格、風險、維護與溝通問題切入，讓原本不認識 Sinco 的人先因自己的問題停下來。</p>
       <p style="margin-top:10px">若太早同時大量加入管理、創業、家庭、生活、選品與團購，觀眾可能看見很多面向，卻不知道 Sinco 最值得被記住的是什麼。</p>
       <div class="intro-arrow" style="margin-top:14px">先突破觀看人群 → 建立專業與人物辨識 → 再逐步擴張內容領域</div>
     </div>
-
     <div class="intro-block">
       <h3>本次拍攝建議怎麼選？</h3>
       <div class="intro-ratio">
         <div class="intro-ratio-cell a">
           <div class="intro-ratio-num">7–8 題</div>
-          <div class="intro-ratio-text">美髮專業與顧客情境<br>用來吸引陌生觀眾、建立專業信任</div>
+          <div class="intro-ratio-text">美髮專業與顧客情境<br>吸引陌生觀眾、建立專業信任</div>
         </div>
         <div class="intro-ratio-cell b">
           <div class="intro-ratio-num">2–3 題</div>
-          <div class="intro-ratio-text">管理、經營、品牌或人物內容<br>用來建立三店主理人與個人 IP 辨識</div>
+          <div class="intro-ratio-text">管理、經營、品牌或人物內容<br>建立三店主理人與個人 IP 辨識</div>
         </div>
       </div>
       <p style="margin-top:14px;font-size:12px;color:var(--muted)">選題時請確認：是否為真實經驗、是否願意公開、說法是否符合本人，以及是否有案例或素材可拍。</p>
     </div>
-
     <div class="intro-block">
       <h3>完成選題後會怎麼進行？</h3>
-      <p>完成 16 選 10 後，內容團隊會再依 Sinco 的真實回答、可提供素材、拍攝條件與既有影片去重結果，整理正式拍攝大綱。</p>
-      <p style="margin-top:10px">選題不代表需要照目前文字逐字拍攝；需要調整的地方，可以直接在「補充說明」欄寫下原因。</p>
+      <p>目前 21 題的候選拍攝大綱與現場提問已先建立，方便確認每個題目是否有足夠內容可以延伸，不需要等選完後才從零開始。</p>
+      <p style="margin-top:10px">Sinco 完成最終 10 題後，我們只會針對這 10 題進一步確認：回答是否符合真實經驗、哪些內容可以公開、是否有可搭配素材、現場要優先使用哪些主線問題與延伸追問。</p>
+      <p style="margin-top:10px">大綱不是需要逐字背誦的台詞；拍攝時會由鏡頭後的人依照主線問題、延伸問題與補救追問，引導 Sinco 用自己的語氣自然回答。</p>
     </div>
-
     <div class="note-box" style="margin-bottom:0">
       <h3>這一階段的核心</h3>
       <p>先讓更多人因為自己的美髮問題看見 Sinco，再從她的回答中記住——她是一位有判斷、敢說真話、重視長期結果的美髮主理人。</p>
     </div>
-
     <div class="intro-cta">
-      <button onclick="document.querySelector('.tab:nth-child(4)').click()">我看完了，前往選題 →</button>
-      <p>共 16 題，請選出 10 題作為本次拍攝主題</p>
+      <button onclick="document.querySelectorAll('.tab')[3].click()">我看完了，前往選題 →</button>
+      <p>已確認 7 題，還需再選 3 題，共 10 題</p>
     </div>
   </div>
 
@@ -297,29 +326,15 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
         <div class="phase-desc">觀眾除了認同專業，也願意持續關注 Sinco 的觀點、個性與經歷。整合預約、合作方向。</div>
       </div>
     </div>
-
     <div class="ratio-box">
       <p class="sec-title">本次拍攝建議比例</p>
       <div class="ratio-grid">
-        <div class="ratio-cell a">
-          <div class="ratio-num">7–8</div>
-          <div class="ratio-text">美髮專業與顧客情境<br>吸引陌生觀眾、建立專業信任</div>
-        </div>
-        <div class="ratio-cell b">
-          <div class="ratio-num" style="color:var(--light)">2–3</div>
-          <div class="ratio-text">管理、經營、品牌或人物<br>建立三店主理人與個人 IP 辨識</div>
-        </div>
+        <div class="ratio-cell a"><div class="ratio-num">7–8</div><div class="ratio-text">美髮專業與顧客情境<br>吸引陌生觀眾、建立專業信任</div></div>
+        <div class="ratio-cell b"><div class="ratio-num" style="color:var(--light)">2–3</div><div class="ratio-text">管理、經營、品牌或人物<br>建立三店主理人與個人 IP 辨識</div></div>
       </div>
     </div>
-
-    <div class="note-box">
-      <h3>本次企劃核心方向</h3>
-      <p>先用美髮專業建立入口，讓更多陌生觀眾因自己的髮型問題看見 Sinco；再從她的回答中記住——她是一位有判斷、敢說真話、重視長期結果的三店主理人。</p>
-    </div>
-    <div class="note-box">
-      <h3>正確的突破受眾順序</h3>
-      <p>先突破觀看人群 → 建立專業與人物辨識 → 再逐步擴張內容領域。<br>現在不宜同時大量加入管理、創業、家庭等多元主題，避免觀眾不清楚 Sinco 最值得被記住的是什麼。</p>
-    </div>
+    <div class="note-box"><h3>本次企劃核心方向</h3><p>先用美髮專業建立入口，讓更多陌生觀眾因自己的髮型問題看見 Sinco；再從她的回答中記住——她是一位有判斷、敢說真話、重視長期結果的三店主理人。</p></div>
+    <div class="note-box"><h3>正確的突破受眾順序</h3><p>先突破觀看人群 → 建立專業與人物辨識 → 再逐步擴張內容領域。<br>現在不宜同時大量加入管理、創業、家庭等多元主題，避免觀眾不清楚 Sinco 最值得被記住的是什麼。</p></div>
   </div>
 
   <!-- ── 拍攝時程 ── -->
@@ -332,23 +347,15 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
   <div id="topics" class="section">
     <div class="progress-bar-wrap">
       <h3>選題進度</h3>
-      <p>從以下 16 題中選出 10 題，選擇後可在每題下方填寫補充說明。</p>
+      <p>已確認 7 題（綠色），請再從候選題中選出 3 題，共 10 題。</p>
       <div class="pb-row">
-        <div class="pb-track"><div class="pb-fill" id="pb-fill" style="width:0%"></div></div>
-        <div class="pb-num"><span id="pb-count">0</span> / 10</div>
-        <button class="pb-clear" onclick="clearAll()">清除全部</button>
+        <div class="pb-track"><div class="pb-fill" id="pb-fill" style="width:70%"></div></div>
+        <div class="pb-num"><span id="pb-count">7</span> / 10</div>
+        <button class="pb-clear" onclick="clearPending()">清除候選</button>
       </div>
     </div>
-    <div class="filter-bar">
-      <button class="fb active" onclick="filterTopics('all',this)">全部</button>
-      <button class="fb" onclick="filterTopics('hair',this)">美髮專業</button>
-      <button class="fb" onclick="filterTopics('mgmt',this)">管理／人事</button>
-      <button class="fb" onclick="filterTopics('ops',this)">經營觀點</button>
-      <button class="fb" onclick="filterTopics('brand',this)">行銷／品牌</button>
-      <button class="fb" onclick="filterTopics('ip',this)">個人 IP</button>
-      <button class="fb" onclick="filterTopics('story',this)">創業故事</button>
-    </div>
-    <div class="topics-grid" id="topics-grid"></div>
+
+    <div id="topics-container"></div>
 
     <div class="submit-wrap">
       <label for="global-note">整體補充說明（選填）</label>
@@ -358,20 +365,15 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
     </div>
   </div>
 
-  <div class="footer">
-    <p>© 2025 Holymake 吼莉內容行銷　版權所有 · LINE@ @holymake</p>
-  </div>
+  <div class="footer"><p>© 2025 Holymake 吼莉內容行銷　版權所有 · LINE@ @holymake</p></div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ============================================================
-// ★ 部署前請把這裡換成你的 Apps Script 網路應用程式網址 ★
-// ============================================================
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZ2_cV79BeCXu6oXxscYe9yL9oY6GXqsxs8CCYGkJqwYOnU8-X4CaO8OoFLZb8Dbdp/exec';
 
-// ── 資料 ──
+// ── 時程資料 ──
 const months = [
   {date:'2026/06/30',label:'01',color:'#db6014',title:'專業判斷＋主理人初步辨識',why:'先讓觀眾看懂 Sinco 的美髮專業，同時埋入她是三店主理人的差異。',content:'髮型適合度、染漂風險、顧客溝通；搭配少量管理、經營與人物觀點。',acc:'建立「會做、會判斷，也有經營視角」的第一印象。',next:'為後續顧客需求、服務與市場觀察鋪路。'},
   {date:'2026/07',label:'02',color:'#e06820',title:'顧客需求、服務溝通與市場觀察',why:'把 Sinco 面對顧客與市場的真實判斷說清楚，避免帳號只剩作品展示。',content:'顧客真正需要什麼、服務落差、需求翻譯、作品與市場需求的差別。',acc:'建立懂顧客、懂服務，也懂市場的經營者形象。',next:'銜接到帶人與人才培育。'},
@@ -383,23 +385,34 @@ const months = [
   {date:'2027/01',label:'08',color:'#ffa080',title:'專業、經營與人物品牌整合',why:'把前七次累積的美髮、管理、人事、行銷與人物內容收斂成清楚辨識。',content:'代表觀點、年度回顧、常見諮詢、主理人選擇。',acc:'逐步形成更清楚的 Sinco 個人品牌，評估預約、合作及後續商業延伸。',next:'確認下一階段最值得持續放大的系列。'},
 ];
 
+// ── 選題資料 ──
+const CONFIRMED_IDS = new Set([5,9,11,12,14,15,16]);
+
 const topics = [
-  {id:1,cat:'hair',title:'想留長又要髮尾乾淨，這兩件事有時不能一起要',desc:'說明髮尾受損時，長度、髮尾狀態與整理效果要怎麼取捨。'},
-  {id:2,cat:'hair',title:'想染淺又不想漂，先接受這三個取捨',desc:'說明不漂染淺時，顏色效果會受到哪些條件限制。'},
-  {id:3,cat:'hair',title:'妳說「只修一下」，我會先問妳平常綁不綁頭髮',desc:'說明剪髮前為什麼要先知道綁髮、工作或育兒等生活需求。'},
-  {id:4,cat:'hair',title:'想剪高層次又怕毛躁，這兩個願望要先排順序',desc:'說明層次高度要怎麼配合髮況與整理能力。'},
-  {id:5,cat:'hair',title:'想跟參考圖一模一樣，我會先拒絕這句話',desc:'說明參考圖只能作為溝通工具，不能保證完全複製。'},
-  {id:6,cat:'hair',title:'染髮價差在哪？不是只差一條染膏',desc:'說明染髮價差不只在染膏，也包含判斷、分區、配方與維護。'},
-  {id:7,cat:'hair',title:'我不會先報漂髮價格，因為要先看這三件事',desc:'說明漂髮報價前為什麼要先看髮況、染髮史與目標。'},
-  {id:8,cat:'hair',title:'為什麼設計師看完頭髮，會先勸妳延期？',desc:'說明何時應該延期、測試或分段處理。'},
-  {id:9,cat:'hair',title:'妳說要「自然一點」，但自然對每個人的意思不一樣',desc:'說明如何把自然、短一點、不要太亮等模糊說法變成具體條件。'},
-  {id:10,cat:'hair',title:'我喜歡這個髮型，但我不會推薦給妳',desc:'說明喜歡與適合不同，要考慮髮況、生活與維護。'},
-  {id:11,cat:'mgmt',title:'帶了三家店後，我才知道團隊問題常常不是能力問題',desc:'談帶團隊後，如何看待人才位置、溝通與團隊卡關。'},
-  {id:12,cat:'mgmt',title:'看一個助理能不能成為設計師，我不只看技術',desc:'談培育人才時，除了技術之外還會觀察哪些面向。'},
-  {id:13,cat:'ops',title:'做對的事，比把事情做對更重要',desc:'用一個工作或經營選擇，談方向為什麼比執行更重要。'},
-  {id:14,cat:'brand',title:'行銷不是一直發作品，而是讓客人知道你有什麼不同',desc:'談作品一直發布，為什麼客人仍可能看不懂品牌差異。'},
-  {id:15,cat:'ip',title:'我為什麼不想只把這個帳號做成作品集？',desc:'說明未來除了髮型，也會分享工作觀點、經營故事與生活選擇。'},
-  {id:16,cat:'story',title:'15歲進美髮業，到三家店主理人，中間不是一路順利',desc:'談從入行到三店主理人的成長與轉折；細節由 Sinco 確認。'},
+  {id:1,cat:'hair',title:'想留長又要髮尾乾淨，這兩件事有時不能一起要',desc:'說明髮尾受損時，長度、髮尾狀態與整理效果要怎麼取捨。',memory:'她會說清楚留長與髮尾狀態的取捨，不只迎合想保留長度。',hook:'妳想留長，還是想先把壞掉的髮尾處理乾淨？有時真的要先選一個。',start:'直接拋出兩難：想保留長度，但髮尾已影響整體質感與整理。',develop:'先問最在意長度、觸感，還是每天看起來乾淨；不同優先順序會有不同做法。',turn:'帶出三種方向：一次整理乾淨、分次修剪搭配照護、暫時保留長度但接受目前限制。護理可改善觸感，但不能取代所有必要修剪。',close:'先決定要保留什麼，再談怎麼留長。',main:['髮尾受損但客人又捨不得剪時，妳會怎麼幫她做選擇？'],extend:['什麼狀況會建議一定要修剪？','可以只剪一點、分次處理嗎？','護髮可以改善到什麼程度？','想留長的人最容易做錯什麼？'],rescue:['客人只說「我就是不要剪」時，妳會怎麼回？','怎麼讓她理解保長度與保質感的差別？']},
+  {id:2,cat:'hair',title:'想染淺又不想漂，先接受這三個取捨',desc:'說明不漂染淺時，顏色效果會受到哪些條件限制。',memory:'她不迎合不漂又要很淺的期待，會先說清楚限制與代價。',hook:'不漂可以，但妳要先決定：淺度、顯色和持久度，哪一個最重要？',start:'承接顧客願望：想變淺、要明顯、又不想漂。',develop:'說明原生髮色、既往染髮史與目前髮況，都會影響不漂能做到的結果。',turn:'拆解三個取捨：淺度受基底限制、顯色要看色調與底色、持久度伴隨不同褪色與維護。',close:'不是先選網路顏色，而是先選最在意的結果。',main:['客人說想染很淺又不想漂時，妳會先問什麼？'],extend:['不漂結果為什麼每個人不同？','染過黑色、紅色或開架染有何影響？','她真正要的是變淺、顯白還是有變化？'],rescue:['客人拿很淺的照片又說不要漂，妳會怎麼解釋？','三個都想要時，怎麼請她排序？']},
+  {id:3,cat:'hair',title:'妳說「只修一下」，我會先問妳平常綁不綁頭髮',desc:'說明剪髮前為什麼要先知道綁髮、工作或育兒等生活需求。',memory:'她會先理解顧客的生活使用方式，再決定怎麼剪。',hook:'只修一下可以，但妳平常要不要綁頭髮？這會直接改變我怎麼剪。',start:'鏡頭後說「只修一下」，Sinco 立即追問是否綁髮。',develop:'延伸詢問工作、運動、育兒、戴安全帽及每天可整理時間。',turn:'說明答案會影響長度、臉周、層次、瀏海與是否留得住；用兩種生活情境做對照。',close:'先告訴設計師妳怎麼生活，才知道怎麼剪。',main:['為什麼客人說只修一下時，妳一定會問平常綁不綁頭髮？'],extend:['除了綁髮還會問哪些生活習慣？','工作、育兒或運動怎麼改變剪法？','整理時間少的人怎麼調整層次或瀏海？'],rescue:['客人什麼都說隨便時，最少一定要問哪三題？','能否舉一個生活習慣改變剪法的例子？']},
+  {id:4,cat:'hair',title:'想剪高層次又怕毛躁，這兩個願望要先排順序',desc:'說明層次高度要怎麼配合髮況與整理能力。',memory:'她會在流行層次與真實髮況之間做適合度判斷。',hook:'高層次可以剪，但妳更怕扁塌，還是更怕毛躁？',start:'用二選一讓觀眾立刻選：怕頭頂扁，還是怕髮尾炸。',develop:'說明自然捲、受損、髮量與每天是否願意吹整，會改變層次高度與位置。',turn:'提供保守層次、臉周層次、搭配燙髮或居家整理等方向。',close:'先解決最在意的問題，再追流行。',main:['客人想剪高層次又怕毛躁時，妳會怎麼判斷？'],extend:['哪些髮況需要更保守？','髮量多、細軟髮、自然捲有何不同？','不想每天吹整時層次怎麼安排？'],rescue:['客人只說想跟照片一樣時，妳先看哪三件事？','怎麼用一句話說明扁塌與毛躁的取捨？']},
+  {id:5,cat:'hair',title:'想跟參考圖一模一樣，我會先拒絕這句話',desc:'說明參考圖只能作為溝通工具，不能保證完全複製。',memory:'她不把參考圖當成果保證，而是做客製化判斷。',hook:'參考圖可以帶，但「一模一樣」這件事，我不會先答應。',start:'鏡頭後遞出參考圖並要求一模一樣，Sinco 直接拒絕這句話。',develop:'說明髮況、原生條件、臉型、既往處理與整理方式都可能不同。',turn:'把參考圖拆成長度、輪廓、捲度、顏色、氛圍；保留核心感覺，再客製成適合本人版本。',close:'不要問能不能複製，改問最想保留這張圖的哪一點。',main:['為什麼客人要求一模一樣時，妳不會直接答應？'],extend:['妳會先拆哪些元素？','哪些差異最容易讓成果不同？','怎麼保留照片感覺而不照抄？','客人怎麼準備參考圖較有效？'],rescue:['客人說「全部都喜歡」時怎麼追問？','怎麼拒絕才不會像否定？']},
+  {id:6,cat:'hair',title:'染髮價差在哪？不是只差一條染膏',desc:'說明染髮價差不只在染膏，也包含判斷、分區、配方與維護。',memory:'她能把染髮價格背後的判斷、工序與長期維護說清楚。',hook:'同樣叫染髮，價格為什麼差這麼多？真正的差異不只在染膏。',start:'從「不都是把染膏塗上去嗎？」的疑問切入。',develop:'拆解染前判斷：髮況、染髮史、目標色、長度與髮量，都會改變工序。',turn:'說明分區、配方、測試、上色次序、漂退處理、護理與維護建議。',close:'問價格時，也要問這個價格包含哪些判斷與流程。',main:['同樣叫染髮，價格差異通常來自哪些地方？'],extend:['染前評估看什麼？','長度、髮量、染髮史怎麼影響工序？','為何有些顏色要分區或多次處理？'],rescue:['客人只問「一條染膏多少錢」時怎麼回？','怎麼說明價差而不貶低同業？']},
+  {id:7,cat:'hair',title:'我不會先報漂髮價格，因為要先看這三件事',desc:'說明漂髮報價前為什麼要先看髮況、染髮史與目標。',memory:'她不在資訊不足時亂報價，會先完成髮況與目標評估。',hook:'漂髮不是我不想報價，是沒看這三件事之前，報了也不準。',start:'鏡頭後拿照片直接問價格，Sinco 先說無法只靠照片精準報。',develop:'列出目前髮況、過往染漂紀錄、目標與可接受差距。',turn:'說明條件會影響是否測試、處理次數、時間、護理及能否一次完成。',close:'不是不透明，而是不想在資訊不足時亂答。',main:['漂髮報價前，妳一定要先看哪三件事？'],extend:['只看照片為何不能報準？','染過黑、紅或開架染有何影響？','什麼情況要做髮束測試？'],rescue:['客人堅持只要價格區間時怎麼說？','最怕客人漏講哪段染髮史？']},
+  {id:8,cat:'hair',title:'為什麼設計師看完頭髮，會先勸妳延期？',desc:'說明何時應該延期、測試或分段處理。',memory:'她寧可建議延期，也不拿顧客的髮況冒險。',hook:'不是我不想做，是現在做，妳可能要先接受這些風險。',start:'顧客急著做指定項目，Sinco 看完髮況卻先建議延期。',develop:'說明會看目前髮況、過往處理與目標差距；資訊不足時不直接下結論。',turn:'帶出先測試、調整目標、分段處理、先做必要照護等替代做法。',close:'延期不是把妳推走，是避免一次做完卻花更久補救。',main:['什麼情況下，妳會先勸客人延期，而不是當天完成？'],extend:['會先觀察哪些風險？','什麼時候做髮束測試？','可改成哪些低風險方向？'],rescue:['客人說「別家都說可以」時怎麼回？','怎麼說明延期不是不想接？']},
+  {id:9,cat:'hair',title:'妳說要「自然一點」，但自然對每個人的意思不一樣',desc:'說明如何把自然、短一點、不要太亮等模糊說法變成具體條件。',memory:'她會把顧客的模糊需求，翻譯成可以執行的具體條件。',hook:'妳說自然一點，我腦中的自然，可能跟妳完全不一樣。',start:'鏡頭後說「我要自然一點」，Sinco 立刻反問是哪一種自然。',develop:'用三組例子拆解：顏色不要太亮、捲度不要太明顯、長度只短一點。',turn:'示範怎麼問：最不想要什麼、平常怎麼整理、能接受多大變化、哪張照片最接近。',close:'不用會術語，只要把能接受與不能接受說清楚。',main:['客人說要自然一點時，妳會怎麼把這句話問清楚？'],extend:['「短一點」怎麼確認長度？','「不要太亮」怎麼對照？','最有效的地雷問題是什麼？'],rescue:['客人一直說「都可以」時怎麼問？','能否用最常見的誤會示範？']},
+  {id:10,cat:'hair',title:'我喜歡這個髮型，但我不會推薦給妳',desc:'說明喜歡與適合不同，要考慮髮況、生活與維護。',memory:'她區分喜歡與適合，重視回家後能不能長期維持。',hook:'這個髮型我自己很喜歡，但放到妳身上，我不一定會推薦。',start:'展示一款 Sinco 喜歡的髮型，反轉說不一定推薦給眼前顧客。',develop:'說明喜歡是審美，推薦是責任；需要看髮況、頭臉條件、生活、整理與維護。',turn:'示範如何保留核心感覺，換成更適合的長度、層次、色調或捲度。',close:'好的設計不是全做上去，而是留下適合妳的。',main:['為什麼妳自己喜歡的髮型，不一定會推薦給客人？'],extend:['會看哪些適合度條件？','生活與整理時間怎麼影響推薦？','怎麼保留喜歡感又不照搬？'],rescue:['能否舉一個喜歡但不適合的示意例子？','怎麼避免讓客人覺得被否定外貌？']},
+  {id:11,cat:'mgmt',title:'帶了三家店後，我才知道團隊問題常常不是能力問題',desc:'談帶團隊後，如何看待人才位置、溝通與團隊卡關。',memory:'她是有三店實戰經驗、會看人與位置的主理人。',hook:'我帶了三家店後才發現，團隊問題很多時候真的不是能力問題。',start:'追問：以前以為是什麼？什麼時候改變看法？',develop:'請 Sinco 描述常見情境：表面像能力不足，實際可能是位置、期待或溝通。',turn:'追問現在怎麼分辨需要訓練、調整位置、釐清責任或重新溝通。',close:'收斂成 Sinco 自己的管理原則。',main:['帶三家店後，妳什麼時候發現團隊問題不一定是能力問題？'],extend:['最常被誤判的是什麼？','現在先看位置、溝通、責任還是其他？','怎麼判斷要教還是換位置？'],rescue:['不談特定員工時，能否用匿名情境？','最想提醒第一次帶人的主管什麼？']},
+  {id:12,cat:'mgmt',title:'看一個助理能不能成為設計師，我不只看技術',desc:'談培育人才時，除了技術之外還會觀察哪些面向。',memory:'她培育人才不只看技術，也會判斷更完整的成長條件。',hook:'一個助理能不能走到設計師，我真的不只看他技術快不快。',start:'追問：不看技術，那妳到底還看什麼？',develop:'請 Sinco 列出真正在意的 2–3 項條件；以本人答案為準。',turn:'每項追問為什麼重要、怎麼看得出來；再談技術快但其他條件不足時怎麼帶。',close:'用給年輕設計師的一句提醒收尾。',main:['除了技術，妳判斷助理能否成為設計師時最看重什麼？'],extend:['會看哪 2–3 項？','怎麼從日常看出來？','技術快但溝通或穩定不足怎麼帶？','哪一項最容易被忽略？'],rescue:['不方便講制度時，能否只講觀察原則？','最想對卡關助理說什麼？']},
+  {id:13,cat:'ops',title:'做對的事，比把事情做對更重要',desc:'用一個工作或經營選擇，談方向為什麼比執行更重要。',memory:'她做決策先看方向是否正確，不只追求執行漂亮。',hook:'事情做得很漂亮，但方向錯了，最後還是在浪費力氣。',start:'追問：這不是一句口號嗎？妳到底怎麼判斷？',develop:'請 Sinco 選一個可公開的情境，說明大家很努力，但真正問題在方向。',turn:'追問現在判斷方向時會看目的、顧客、長期結果或其他標準。',close:'收斂成可被記住的判斷句，不下成功學結論。',main:['妳怎麼判斷自己是在做對的事，而不只是把事情做對？'],extend:['有沒有很努力後發現方向不對的事？','現在決策前先問哪幾題？','願意承受什麼短期代價？'],rescue:['不方便講完整事件時，可否用匿名情境？','怎麼講得不像雞湯？']},
+  {id:14,cat:'brand',title:'行銷不是一直發作品，而是讓客人知道你有什麼不同',desc:'談作品一直發布，為什麼客人仍可能看不懂品牌差異。',memory:'她理解品牌不只是一直發作品，而是讓顧客看懂差異。',hook:'作品一直發，客人還是不知道為什麼要選你，問題可能不在發得不夠多。',start:'先承認作品重要，再問：為什麼作品很多，客人仍記不住設計師？',develop:'請 Sinco 從三店經驗談，顧客需要看懂擅長對象、判斷方式、服務價值或人物觀點。',turn:'用三題整理：最適合幫誰？做決定有何不同？客人為何再回來？',close:'不是少發作品，而是作品之外要說明「為什麼是你」。',main:['作品一直發，為什麼客人仍可能不知道要不要選這位設計師？'],extend:['最常見作品帳號問題是什麼？','顧客除成品還想知道什麼？','人物觀點扮演什麼角色？'],rescue:['不談完整策略時，先提醒設計師回答哪一題？','能否用匿名情境？']},
+  {id:15,cat:'ip',title:'我為什麼不想只把這個帳號做成作品集？',desc:'說明未來除了髮型，也會分享工作觀點、經營故事與生活選擇。',memory:'她希望帳號從作品展示，延伸到工作觀點、經營與人物內容。',hook:'我當然會繼續分享髮型，但我不想讓你只認識我的作品。',start:'拍攝者問：作品集不是最直接嗎？為什麼還想講自己？',develop:'說明作品能證明技術，但無法完整呈現判斷、價值觀、三店經營與人生經驗。',turn:'清楚說明未來逐步分享：美髮專業判斷、管理與人才、創業選擇、生活角色。',close:'希望大家不只記得做過哪顆頭，也記得 Sinco 怎麼看事情。',main:['為什麼妳不想只把帳號做成作品集？'],extend:['作品集少了妳哪一部分？','最希望觀眾記住什麼？','未來最想先分享哪三類內容？'],rescue:['若只能一句話說帳號接下來改變，妳會怎麼說？','擔心原有美髮觀眾不習慣嗎？']},
+  {id:16,cat:'story',title:'15歲進美髮業，到三家店主理人，中間不是一路順利',desc:'談從入行到三店主理人的成長與轉折；細節由 Sinco 確認。',memory:'她的三店主理人身分來自長期累積與真實轉折，不是一路順利。',hook:'大家看到的是三間店，但中間其實有很多次，我以為自己撐不下去。',start:'從 15 歲入行開始，問當時為什麼進美髮、對未來有沒有想像。',develop:'挑一至兩個可公開轉折：成為設計師、開始帶人、創業或團隊重組。',turn:'追問那段時間最大的改變、付出的代價，以及現在回頭看最重要的理解。',close:'用一句對 15 歲自己的話收尾。',main:['從 15 歲進美髮業到三家店主理人，妳最想講哪一個轉折？'],extend:['15 歲時為什麼選美髮？','第一次覺得撐不下去是哪個階段？','哪個決定改變後來的路？','最想對 15 歲自己說什麼？'],rescue:['不方便講完整事件時，可否只說當時選擇與學到什麼？','有沒有舊照片能幫妳想起那個階段？']},
+];
+
+const extraTopics = [
+  {id:17,cat:'hair',title:'同樣是剪髮，為什麼有人要花一個小時？',desc:'說明剪髮時間不只花在剪短，也包含諮詢、分區、乾剪檢查與整理說明。',memory:'她重視的不是剪得快，而是讓結果更適合顧客並能長期維持。',hook:'只是剪短一點，為什麼要花一個小時？時間其實花在這幾件事。',start:'拍攝者提出疑問：剪一點點為什麼不能很快。',develop:'拆解剪之前：了解需求、生活、髮況與現有結構。',turn:'拆解剪的過程與剪後：分區、建立輪廓、乾狀態檢查、細節調整與整理說明。',close:'真正花時間的，不是剪掉多少，而是怎麼讓它長回來也好看。',main:['同樣是剪髮，時間為什麼會差這麼多？'],extend:['剪前會做哪些確認？','分區與乾剪檢查各解決什麼？','整理說明為何也是服務？'],rescue:['客人說「只剪一公分」時怎麼說？','實際流程最不能省的是哪一步？']},
+  {id:18,cat:'hair',title:'特殊色最貴的不是當天，是接下來三個月',desc:'說明特殊色除了當天費用，後續還有褪色、補色、護理、回店頻率與時間成本。',memory:'她會在顧客決定染之前，先把後續維護與真正成本說清楚。',hook:'特殊色真正要先算的，不是今天多少錢，是接下來三個月妳願意付出多少。',start:'先問顧客只看當天價格，還是也想過之後怎麼維持。',develop:'列出三類後續成本：時間與洗護習慣、居家產品、回店補色或調整。',turn:'依生活條件提供高維護特殊色、較低維護設計染，或更能接受褪色的方向。',close:'真正適合的顏色，是妳連褪色過程都願意承擔。',main:['特殊色做完之後，顧客最容易低估哪些成本？'],extend:['褪色受哪些習慣影響？','居家需準備哪些照護？','什麼人不適合高維護特殊色？'],rescue:['客人只問「可以撐多久」時怎麼回答？','怎麼避免像追加銷售？']},
+  {id:19,cat:'hair',title:'想省錢，最省的不是選便宜，是少做一次錯誤決定',desc:'說明不適合後重新染燙、修剪補救，常比一開始做好判斷更花錢。',memory:'她不只替顧客做服務，也會幫顧客降低做錯選擇的成本。',hook:'美髮最浪費錢的，常常不是做得貴，是做完才發現根本不適合。',start:'拍攝者問：預算有限，當然先選便宜的不是嗎？',develop:'拆解錯誤決定的成本：重染重燙或修剪、額外維護、時間與髮況負擔。',turn:'提供避免踩雷的資訊：染燙史、整理時間、預算上限、絕對不能接受的結果。',close:'省錢不是只看當天價格，而是降低需要補救的機率。',main:['為什麼最省錢的做法，不一定是選當下最便宜？'],extend:['做錯後多出哪些成本？','預約前提供什麼最能避免重做？','預算有限怎麼排序？'],rescue:['怎麼講才不像推高價服務？','可否用不涉及客戶的常見情境？']},
+  {id:20,cat:'hair',title:'做完當天很美不算成功，洗過三次還能整理才算',desc:'說明真正適合的髮型，要在顧客回家洗頭後，仍能配合工具、時間與整理能力維持。',memory:'她評估成果不只看完成照，更重視顧客回家後能不能自己維持。',hook:'髮型做完當天好看不難，洗過三次妳還能整理，才是真的適合。',start:'先反轉完成照：店內漂亮不是唯一驗收標準。',develop:'說明店內有專業工具與操作，回家後才看見整理時間、毛流、習慣與維護負擔。',turn:'三項居家驗收：可接受時間內完成、手邊工具足夠、長出來或褪色後仍可接受。',close:'做髮型要設計妳回家之後的生活。',main:['為什麼不把做完當天漂亮，當成唯一成功標準？'],extend:['回家最常遇到什麼落差？','怎麼評估每天能整理多久？','長出來或褪色後為何也要先談？'],rescue:['「洗過三次」只是說法，真正想判斷什麼？','能否用剪、燙、染其中一種示範？']},
+  {id:21,cat:'hair',title:'設計師直接說「不適合」，是在擋妳變美嗎？',desc:'說明專業者提出不同意見，是在揭露髮況、生活、維護或後悔風險，不代表否定顧客。',memory:'她說真話不是為了拒絕顧客，而是把長期結果放在當下成交前面。',hook:'我直接說不適合，不是想管妳，是因為我已經看到妳回家會後悔的地方。',start:'拍攝者質疑：客人想做就做，為什麼要直接說不適合？',develop:'說明可能風險：髮況承受度、每天維護、工作生活限制、參考圖與本人條件差距。',turn:'區分直接與不尊重：先說原因、可能結果、替代選擇，最後由顧客決定。',close:'說真話不是擋妳變美，是不想只顧當下成交。',main:['當妳直接告訴客人不適合，真正想保護的是什麼？'],extend:['最常因哪些條件提出不同意見？','直接與不尊重界線在哪？','通常提供哪些替代？'],rescue:['客人很堅持時怎麼保留決定權？','能否示範一句妳會說的話？']},
 ];
 
 const tagMeta = {
@@ -412,8 +425,7 @@ const tagMeta = {
 };
 
 // ── 狀態 ──
-let selected = {}; // { id: note }
-let currentFilter = 'all';
+let pendingSelected = {}; // 候選題選擇 {id: note}
 
 // ── Tab 切換 ──
 function showTab(id, btn) {
@@ -445,86 +457,188 @@ function renderTimeline() {
       </div>
     </div>`).join('');
 }
+function toggleMc(i) { document.getElementById('mc'+i).classList.toggle('open'); }
 
-function toggleMc(i) {
-  document.getElementById('mc' + i).classList.toggle('open');
+// ── 腳本 accordion HTML ──
+function scriptHTML(t, isConfirmed) {
+  const color = isConfirmed ? 'var(--green)' : 'var(--orange)';
+  return `
+    <button class="script-toggle" onclick="toggleScript(${t.id}, event)">
+      <span>查看腳本大綱與提問句</span>
+      <span class="script-chevron" id="chev${t.id}">▾</span>
+    </button>
+    <div class="script-body" id="script${t.id}">
+      <div class="script-field">
+        <label>Hook（開場鉤子）</label>
+        <p>${t.hook}</p>
+      </div>
+      <div class="script-field">
+        <label>起｜0–5 秒</label><p>${t.start}</p>
+      </div>
+      <div class="script-field">
+        <label>承｜5–18 秒</label><p>${t.develop}</p>
+      </div>
+      <div class="script-field">
+        <label>轉｜18–48 秒</label><p>${t.turn}</p>
+      </div>
+      <div class="script-field">
+        <label>合｜48–60 秒</label><p>${t.close}</p>
+      </div>
+      <div class="script-field">
+        <label>主線問題</label>
+        <div class="script-qa">${t.main.map(q=>`<div class="script-q">🎙 ${q}</div>`).join('')}</div>
+      </div>
+      <div class="script-field">
+        <label>延伸問題</label>
+        <div class="script-qa">${t.extend.map(q=>`<div class="script-q">↳ ${q}</div>`).join('')}</div>
+      </div>
+      <div class="script-field">
+        <label>補救追問</label>
+        <div class="script-qa">${t.rescue.map(q=>`<div class="script-q">⚡ ${q}</div>`).join('')}</div>
+      </div>
+    </div>`;
+}
+
+function toggleScript(id, e) {
+  e.stopPropagation();
+  const body = document.getElementById('script'+id);
+  const chev = document.getElementById('chev'+id);
+  const isOpen = body.classList.toggle('open');
+  chev.style.transform = isOpen ? 'rotate(180deg)' : '';
 }
 
 // ── 選題渲染 ──
-function renderTopics(filter) {
-  const list = filter === 'all' ? topics : topics.filter(t => t.cat === filter);
-  document.getElementById('topics-grid').innerHTML = list.map(t => {
+function renderTopics() {
+  const confirmedTopics = topics.filter(t => CONFIRMED_IDS.has(t.id));
+  const pendingTopics = topics.filter(t => !CONFIRMED_IDS.has(t.id));
+
+  let html = '';
+
+  // 已確認 7 題
+  html += `<div class="topic-section-label confirmed">已確認主題（7 題）</div>`;
+  html += `<div class="topics-grid">`;
+  confirmedTopics.forEach(t => {
     const tm = tagMeta[t.cat];
-    const isSel = selected.hasOwnProperty(t.id);
-    const note = isSel ? (selected[t.id] || '') : '';
-    return `
-      <div class="tc${isSel ? ' selected' : ''}" id="tc${t.id}">
-        <div class="tc-num">題 ${String(t.id).padStart(2,'0')}</div>
-        <span class="tc-tag ${tm.cls}">${tm.label}</span>
-        <div class="tc-title">${t.title}</div>
-        <div class="tc-desc">${t.desc}</div>
+    html += `
+      <div class="tc confirmed" id="tc${t.id}">
+        <div class="tc-top">
+          <div class="tc-num">題 ${String(t.id).padStart(2,'0')} <span class="confirmed-badge">✓ 已確認</span></div>
+          <span class="tc-tag ${tm.cls}">${tm.label}</span>
+          <div class="tc-title">${t.title}</div>
+          <div class="tc-memory">${t.memory}</div>
+          <div class="tc-desc">${t.desc}</div>
+        </div>
+        ${scriptHTML(t, true)}
+      </div>`;
+  });
+  html += `</div>`;
+
+  // 候選題（還需選 3 題）
+  html += `<div class="topic-section-label pending" style="margin-top:32px">候選主題（請再選 3 題）</div>`;
+  html += `<div class="topics-grid">`;
+  pendingTopics.forEach(t => {
+    const tm = tagMeta[t.cat];
+    const isSel = pendingSelected.hasOwnProperty(t.id);
+    html += `
+      <div class="tc${isSel?' selected':''}" id="tc${t.id}">
+        <div class="tc-top">
+          <div class="tc-num">題 ${String(t.id).padStart(2,'0')}</div>
+          <span class="tc-tag ${tm.cls}">${tm.label}</span>
+          <div class="tc-title">${t.title}</div>
+          <div class="tc-memory" style="color:var(--muted);background:rgba(122,90,58,0.06)">${t.memory}</div>
+          <div class="tc-desc">${t.desc}</div>
+        </div>
+        ${scriptHTML(t, false)}
         <label class="tc-check-row">
-          <input type="checkbox" ${isSel ? 'checked' : ''} onchange="toggleTopic(${t.id}, this)">
+          <input type="checkbox" ${isSel?'checked':''} onchange="togglePending(${t.id}, this)">
           <span>選擇此題</span>
         </label>
         <div class="tc-note-wrap">
-          <textarea class="tc-note" placeholder="補充說明（選填）" oninput="updateNote(${t.id}, this.value)">${note}</textarea>
+          <textarea class="tc-note" placeholder="補充說明（選填）" oninput="updateNote(${t.id}, this.value)">${isSel?(pendingSelected[t.id]||''):''}</textarea>
         </div>
       </div>`;
-  }).join('');
+  });
+  html += `</div>`;
+
+  // 補選題
+  html += `<div class="topic-section-label extra" style="margin-top:32px">補選題（新增 5 題，可視需要補選）</div>`;
+  html += `<div class="topics-grid">`;
+  extraTopics.forEach(t => {
+    const tm = tagMeta[t.cat];
+    const isSel = pendingSelected.hasOwnProperty(t.id);
+    html += `
+      <div class="tc${isSel?' selected':''}" id="tc${t.id}">
+        <div class="tc-top">
+          <div class="tc-num">題 ${t.id} <span class="extra-badge">補選題</span></div>
+          <span class="tc-tag ${tm.cls}">${tm.label}</span>
+          <div class="tc-title">${t.title}</div>
+          <div class="tc-memory" style="color:var(--muted);background:rgba(122,90,58,0.06)">${t.memory}</div>
+          <div class="tc-desc">${t.desc}</div>
+        </div>
+        ${scriptHTML(t, false)}
+        <label class="tc-check-row">
+          <input type="checkbox" ${isSel?'checked':''} onchange="togglePending(${t.id}, this)">
+          <span>選擇此題</span>
+        </label>
+        <div class="tc-note-wrap">
+          <textarea class="tc-note" placeholder="補充說明（選填）" oninput="updateNote(${t.id}, this.value)">${isSel?(pendingSelected[t.id]||''):''}</textarea>
+        </div>
+      </div>`;
+  });
+  html += `</div>`;
+
+  document.getElementById('topics-container').innerHTML = html;
   updateCounter();
 }
 
-function toggleTopic(id, el) {
-  const count = Object.keys(selected).length;
-  if (el.checked && count >= 10) {
+function togglePending(id, el) {
+  const total = Object.keys(pendingSelected).length;
+  if (el.checked && total >= 3) {
     el.checked = false;
-    showToast('最多只能選 10 題');
+    showToast('候選題最多再選 3 題（加上已確認 7 題共 10 題）');
     return;
   }
   if (el.checked) {
-    selected[id] = '';
-    document.getElementById('tc' + id).classList.add('selected');
+    pendingSelected[id] = '';
+    document.getElementById('tc'+id).classList.add('selected');
   } else {
-    delete selected[id];
-    document.getElementById('tc' + id).classList.remove('selected');
+    delete pendingSelected[id];
+    document.getElementById('tc'+id).classList.remove('selected');
   }
   updateCounter();
 }
 
 function updateNote(id, val) {
-  if (selected.hasOwnProperty(id)) selected[id] = val;
+  if (pendingSelected.hasOwnProperty(id)) pendingSelected[id] = val;
 }
 
 function updateCounter() {
-  const n = Object.keys(selected).length;
+  const n = 7 + Object.keys(pendingSelected).length;
   document.getElementById('pb-count').textContent = n;
-  document.getElementById('pb-fill').style.width = (n / 10 * 100) + '%';
+  document.getElementById('pb-fill').style.width = (n/10*100)+'%';
 }
 
-function clearAll() {
-  selected = {};
-  renderTopics(currentFilter);
+function clearPending() {
+  pendingSelected = {};
+  renderTopics();
 }
 
-function filterTopics(cat, btn) {
-  currentFilter = cat;
-  document.querySelectorAll('.fb').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderTopics(cat);
-}
-
-// ── 送出到 Google Sheets ──
+// ── 送出 ──
 async function submitToSheets() {
-  const count = Object.keys(selected).length;
-  if (count === 0) { showToast('請至少選擇一題'); return; }
+  const pendingCount = Object.keys(pendingSelected).length;
+  if (pendingCount === 0) { showToast('請至少再選 1 題候選題'); return; }
 
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
   btn.textContent = '送出中…';
 
+  const allSelections = [
+    ...[...CONFIRMED_IDS].map(id => ({ id, note: '' })),
+    ...Object.entries(pendingSelected).map(([id, note]) => ({ id: Number(id), note }))
+  ];
+
   const payload = {
-    selections: Object.entries(selected).map(([id, note]) => ({ id: Number(id), note })),
+    selections: allSelections,
     globalNote: document.getElementById('global-note').value.trim()
   };
 
@@ -532,7 +646,7 @@ async function submitToSheets() {
     const res = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify(payload),
-      headers: { 'Content-Type': 'text/plain' }, // Apps Script doPost 需要 text/plain 避免 CORS preflight
+      headers: { 'Content-Type': 'text/plain' },
     });
     const json = await res.json();
     if (json.success) {
@@ -558,7 +672,7 @@ function showToast(msg) {
 
 // ── Init ──
 renderTimeline();
-renderTopics('all');
+renderTopics();
 </script>
 </body>
 </html>
